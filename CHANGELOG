@@ -1,0 +1,6 @@
+# Change log
+
+## 0.1.0  
+[2018-Oct-19]
+- Initial project.
+- Establish client and server. Able to load report file and display.
