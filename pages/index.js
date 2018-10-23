@@ -16,7 +16,6 @@ Index.getInitialProps = async function () {
   let res = {}; 
   try {
     res = await axios.get( 'http://localhost:3003/test' ); 
-    // console.log( res.data );
   } catch ( error ) { 
     console.log( error ); 
   } return {
