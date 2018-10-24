@@ -128,11 +128,7 @@
     <testcase classname="Sample Unit Test.test GTS webservice different respose code" name="GTS screening :New screen request different respose code" time="0.009">
     </testcase>
   </testsuite>
-  <testsuite name="Sample Schedular test Sample schedular" tests="2" errors="0" failures="1" skipped="0" timestamp="2018-10-18T00:19:30" time="0.024">
-    <testcase classname="Sample Unit Test.Sample Schedular test Sample schedular" name="test schedular resubmitGTSScreening" time="0.022">
-      <failure message="Unexpected call: getGTSScreenList(select * from gts where gts_id in (select gts_gts_id from  gts_trace where gts_trace_created &gt;= DATE_SUB(NOW(), interval ? hour)) and gts_screened_status is null;, [undefined])
-    "></failure>
-    </testcase>
+  <testsuite name="Sample Schedular test Sample schedular" tests="1" errors="0" failures="1" skipped="0" timestamp="2018-10-18T00:19:30" time="0.024">
     <testcase classname="Sample Unit Test.Sample Schedular test Sample schedular" name="test schedular resubmitGTSScreening" time="0.022">
       <failure message="Unexpected call: getGTSScreenList(select * from gts where gts_id in (select gts_gts_id from  gts_trace where gts_trace_created &gt;= DATE_SUB(NOW(), interval ? hour)) and gts_screened_status is null;, [undefined])
     "></failure>

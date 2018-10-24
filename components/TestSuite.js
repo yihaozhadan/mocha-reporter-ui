@@ -44,7 +44,7 @@ class TestSuite extends React.Component {
           {
             testsuites.map( ( testSuite, i ) => {
               return (
-                  <TestCase name={ testSuite.name } count={ testSuite.tests } testCases={ testSuite.testcase } isOpen={ this.state.collapse } key={i}/>
+                  <TestCase name={ testSuite.name } count={ testSuite.tests } testCases={ testSuite.testcase } isOpen={ this.state.collapse } key={i.toString()}/>
               )
             } )
           }
