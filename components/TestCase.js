@@ -32,9 +32,9 @@ class TestCase extends React.Component {
             <caption>{testCases[0].classname}</caption>
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Time (ms)</th>
+                <th scope="col" style={{width: "7%"}}>#</th>
+                <th scope="col" style={{width: "80%"}}>Name</th>
+                <th scope="col" style={{width: "13%"}}>Time (ms)</th>
               </tr>
             </thead>
             {
@@ -45,11 +45,11 @@ class TestCase extends React.Component {
                   return (
                     <tbody key={index.toString()}>
                       <tr className={status}>
-                        <th scope="row">{index + 1}</th>
-                        <td>
+                        <th scope="row" style={{width: "7%"}}>{index + 1}</th>
+                        <td style={{width: "80%"}}>
                           <HovertrMsg name={testCase.name} message={testCase.failure[0].message} />
                         </td>
-                        <td>{Number(testCase.time) * 1000}</td>
+                        <td style={{width: "13%"}}>{Number(testCase.time) * 1000}</td>
                       </tr>
                     </tbody>
                   );
@@ -60,9 +60,9 @@ class TestCase extends React.Component {
                 return (
                   <tbody key={index.toString()}>
                     <tr className={status}>
-                      <th scope="row">{index + 1}</th>
-                      <td>{testCase.name}</td>
-                      <td>{Number(testCase.time) * 1000}</td>
+                      <th scope="row" style={{width: "7%"}}>{index + 1}</th>
+                      <td style={{width: "80%"}}>{testCase.name}</td>
+                      <td style={{width: "13%"}}>{Number(testCase.time) * 1000}</td>
                     </tr>
                   </tbody>
                 );
