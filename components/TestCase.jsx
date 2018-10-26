@@ -1,5 +1,7 @@
 import React from 'react';
-import { Badge, Collapse, ListGroupItem, Table} from 'reactstrap';
+import {
+  Badge, Collapse, ListGroupItem, Table,
+} from 'reactstrap';
 import HovertrMsg from './HoverMsg';
 
 class TestCase extends React.Component {
@@ -9,23 +11,30 @@ class TestCase extends React.Component {
     this.toggleToolTip = this.toggleToolTip.bind(this);
     this.state = { isOpen: false, showBadge: true, tooltipOpen: false };
   }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen,
       showBadge: !this.state.showBadge,
     });
   }
+
   toggleToolTip() {
     this.setState({ tooltipOpen: !this.state.tooltipOpen });
   }
+
   render() {
     const testCases = this.props.testCases;
     return (
       <ListGroupItem className="justify-content-between" onClick={this.toggle}>
         <div>
-          <cite className="fas fa-vial">  {this.props.name}  </cite>
-          <span>  </span>
-          <Badge pill className={this.state.showBadge ? "" : "d-none"}>{this.props.count}</Badge>
+          <cite className="fas fa-vial">
+            {' '}
+            {this.props.name}
+            {' '}
+          </cite>
+          <span />
+          <Badge pill className={this.state.showBadge ? '' : 'd-none'}>{this.props.count}</Badge>
         </div>
         <Collapse isOpen={this.props.isOpen || this.state.isOpen}>
           <Table bordered>
@@ -39,9 +48,9 @@ class TestCase extends React.Component {
             </thead>
             {
               testCases.map((testCase, index) => {
-                let status = "table-success";
+                let status = 'table-success';
                 if (testCase.failure != undefined) {
-                  status = "table-danger";
+                  status = 'table-danger';
                   return (
                     <tbody key={index.toString()}>
                       <tr className={status}>
@@ -55,7 +64,7 @@ class TestCase extends React.Component {
                   );
                 }
                 if (testCase.skipped != undefined) {
-                  status = "table-warning";
+                  status = 'table-warning';
                 }
                 return (
                   <tbody key={index.toString()}>

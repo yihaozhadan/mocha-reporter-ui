@@ -1,6 +1,8 @@
 import React from 'react';
+import {
+  Button, ListGroup, Row, Col,
+} from 'reactstrap';
 import TestCase from './TestCase';
-import { Button, ListGroup, Row, Col } from 'reactstrap';
 
 class TestSuite extends React.Component {
   constructor(props) {
@@ -34,19 +36,29 @@ class TestSuite extends React.Component {
     return (
       <div>
         <Row>
-          <Col><b>Total   : </b>{ this.totalTests }</Col>
-          <Col className="text-success"><b>Success : </b>{ this.successTests }</Col>
-          <Col className="text-danger"><b>Failure : </b>{ this.failedTests }</Col>
-          <Col className="text-warning"><b>Skipped : </b>{ this.skippedTests }</Col>
+          <Col>
+            <b>Total   : </b>
+            { this.totalTests }
+          </Col>
+          <Col className="text-success">
+            <b>Success : </b>
+            { this.successTests }
+          </Col>
+          <Col className="text-danger">
+            <b>Failure : </b>
+            { this.failedTests }
+          </Col>
+          <Col className="text-warning">
+            <b>Skipped : </b>
+            { this.skippedTests }
+          </Col>
         </Row>
-        <Button color="primary" onClick={ this.toggle } style={ { marginBottom: '1rem' } }>{ this.state.expand }</Button>
+        <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>{ this.state.expand }</Button>
         <ListGroup>
           {
-            testsuites.map( ( testSuite, i ) => {
-              return (
-                  <TestCase name={ testSuite.name } count={ testSuite.tests } testCases={ testSuite.testcase } isOpen={ this.state.collapse } key={i.toString()}/>
-              )
-            } )
+            testsuites.map((testSuite, i) => (
+              <TestCase name={testSuite.name} count={testSuite.tests} testCases={testSuite.testcase} isOpen={this.state.collapse} key={i.toString()} />
+            ))
           }
         </ListGroup>
       </div>
