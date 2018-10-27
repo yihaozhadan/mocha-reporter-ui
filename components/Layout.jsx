@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import { Container } from 'reactstrap';
+import { Provider } from "react-redux";
+import store from '../store';
 
 const Layout = props => (
   <div>
@@ -12,9 +14,11 @@ const Layout = props => (
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
     </Head>
-    <Container>
-      {props.children}
-    </Container>
+    <Provider store={store}>
+      <Container>
+        {props.children}
+      </Container>
+    </Provider>
   </div>
 );
 

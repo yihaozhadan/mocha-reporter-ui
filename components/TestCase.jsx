@@ -56,7 +56,7 @@ class TestCase extends React.Component {
                       <tr className={status}>
                         <th scope="row">{index + 1}</th>
                         <td>
-                          <HovertrMsg name={testCase.name} message={testCase.failure[0].message} />
+                          <HovertrMsg index={index} name={testCase.name} message={testCase.failure[0].message} />
                         </td>
                         <td>{Number(testCase.time) * 1000}</td>
                       </tr>
