@@ -7,5 +7,9 @@ Mocha Report UI is a tool which provides the ability to manage mocha unit test r
 - Display mocha unit test report.
 - Friendly interaction.
 
+## Keywords
+
+  Mocha, Unit Test, Javascript, Redux, UI/UX, Jenkins, Reporter, Express.
+
 ## Suported Mocha Reporter
 - [mocha-jenkins-reporter](https://github.com/juhovh/mocha-jenkins-reporter)

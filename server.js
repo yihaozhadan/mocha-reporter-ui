@@ -12,12 +12,13 @@ const handle = app.getRequestHandler();
 
 const filePath = './static/test-report.xml';
 
-app.prepare()
+app
+  .prepare()
   .then(() => {
     const server = express();
     server.get('/test', (req, res) => {
       fs.readFile(filePath, (error, data) => {
-        if (error) throw error;
+        if (error) { throw error; }
         parser.parseString(data, (err, result) => {
           if (err) {
             console.error(err.stack);
@@ -31,10 +32,11 @@ app.prepare()
     server.get('*', (req, res) => handle(req, res));
 
     server.listen(port, (err) => {
-      if (err) throw err;
+      if (err) { throw err; }
       console.log(`> Ready on http://localhost:${port}`);
     });
-  }).catch((ex) => {
+  })
+  .catch((ex) => {
     console.error(ex.stack);
     process.exit(1);
   });

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import testcase from './testcaseReducer';
+import testSuites from './testCaseReducer';
 
 export default combineReducers({
-  testcase,
+  testSuites,
 });
