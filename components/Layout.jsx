@@ -1,13 +1,13 @@
 import Head from 'next/head';
-import {Container} from 'next/app';
+import {Container} from 'reactstrap';
+import Header from './Header';
+import ScrollButton from './ScrollButton/ScrollButton';
 
 const Layout = props => (
   <div>
     <Head>
       <title>
-        {' '}
         {props.title}
-        {' '}
       </title>
       <link
         rel="stylesheet"
@@ -17,7 +17,9 @@ const Layout = props => (
         href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"/>
     </Head>
     <Container>
+      <Header title={props.title}/>
       {props.children}
+      <ScrollButton scrollStepInPx="50" delayInMs="16.66"/>
     </Container>
   </div>
 );

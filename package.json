@@ -1,7 +1,7 @@
 {
   "name": "mocha-reporter-ui",
-  "version": "0.1.0",
-  "description": "Moneta unit test reporter",
+  "version": "0.2.0",
+  "description": "Mocha unit test reporter",
   "main": "index.js",
   "scripts": {
     "dev": "next",
@@ -15,6 +15,7 @@
   ],
   "author": "Hui Zhou",
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "nan": "^2.11.1",

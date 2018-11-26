@@ -22,10 +22,7 @@ class Index extends React.Component {
   render() {
     return (
       <Layout title={this.props.name}>
-        <div>
-          <h1>{this.props.name}</h1>
-          <TestSuite testSuites={this.props.testSuite}/>
-        </div>
+        <TestSuite testSuites={this.props.testSuite}/>
       </Layout>
     )
   }
