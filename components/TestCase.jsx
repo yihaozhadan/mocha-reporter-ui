@@ -28,13 +28,19 @@ class TestCase extends React.Component {
     return (
       <ListGroupItem className="justify-content-between" onClick={this.toggle}>
         <div>
-          <cite className="fas fa-vial">
-            {' '}
-            {this.props.name}
-            {' '}
-          </cite>
-          <span />
-          <Badge pill className={this.state.showBadge ? '' : 'd-none'}>{this.props.count}</Badge>
+          <cite className="fas fa-vial" />
+          <span className="testTitle">
+          {this.props.name}
+          <style jsx>{`
+            .testTitle {
+              margin-left: 0.4em;
+              margin-right: 0.4em;
+            }
+          `}</style>
+          </span>
+          <Badge pill className={this.state.showBadge ? '' : 'd-none'}>
+          {this.props.count}
+          </Badge>
         </div>
         <Collapse isOpen={this.props.isOpen || this.state.isOpen}>
           <Table bordered>

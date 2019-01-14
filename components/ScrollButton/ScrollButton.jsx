@@ -23,16 +23,17 @@ export default class ScrollButton extends React.Component {
   }
 
   render() {
-    return <div>
-      
+    return (
+    <div>
       <button
         title='Back to top'
         className='scroll'
         onClick={ () => {
           this.scrollToTop();
         } }>
-        <span className='arrow-up glyphicon glyphicon-chevron-up'></span>
+        <span className='arrow-up fas fa-arrorw-up'></span>
       </button>
-    </div>;
+    </div>
+    )
   }
 }

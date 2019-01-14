@@ -14,7 +14,7 @@ const Layout = props => (
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
       <link
         rel="stylesheet"
-        href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"/>
+        href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"/>
     </Head>
     <Container>
       <Header title={props.title}/>

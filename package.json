@@ -39,5 +39,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "redux-devtools-extension": "^2.13.5"
-  }
+  },
+  "repository": "https://github.com/yihaozhadan/mocha-reporter-ui",
+  "license": "MIT"
 }
