@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import TestSuite from '../components/TestSuite';
-​
+
 const getVisibleTestcases = (testSuites, filter) => {
   switch (filter) {
     case 'SHOW_SUCCESS':
@@ -14,10 +14,10 @@ const getVisibleTestcases = (testSuites, filter) => {
       return testSuites;
   }
 }
-​
+
 const mapStateToProps = state => {
   return {
-    testSuites: getVisibleTestcases(state.testSuites, state.visibilityFilter)
+    testSuites: getVisibleTestcases(state.testSuite, state.visibilityFilter)
   }
 }
 
@@ -30,5 +30,5 @@ const mapDispatchToProps = dispatch => {
 }
 
 const VisibleTestCaseList = connect(mapStateToProps, mapDispatchToProps)(TestSuite);
-​
+
 export default VisibleTestCaseList

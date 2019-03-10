@@ -1,6 +1,7 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import xml2js from 'xml2js';
+import {connect} from 'react-redux';
 import {
   Collapse,
   Navbar,
@@ -13,10 +14,10 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
-
+import {loadTestSuites} from '../actions/testCaseActions';
 const parser = new xml2js.Parser({ mergeAttrs: true });
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
     this.onDrop = this.onDrop.bind(this);
@@ -37,7 +38,7 @@ export default class Header extends React.Component {
           if (err) {
             console.error(err.stack);
           }
-          console.log(result)
+          this.props.dispatch(loadTestSuites(result.testsuites));
         });
     };
     files.forEach(file => reader.readAsBinaryString(file));
@@ -99,3 +100,5 @@ export default class Header extends React.Component {
     );
   }
 }
+
+export default connect()(Header)

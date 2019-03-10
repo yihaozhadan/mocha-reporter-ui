@@ -1,60 +1,36 @@
-import React from 'react';
-import Dropzone from 'react-dropzone'
+import _ from 'lodash';
 import xml2js from 'xml2js';
-import Layout from '../components/Layout';
-import TestSuite from '../components/TestSuite';
-import {connect} from 'react-redux';
-import {loadTestSuites} from '../actions/testCaseActions';
-import './style.css';
+import { connect } from 'react-redux';
+import { Main } from '../components';
+import { loadTestSuites } from '../actions/testCaseActions';
 
-const parser = new xml2js.Parser({ mergeAttrs: true });
+const parser = new xml2js.Parser( { mergeAttrs: true } );
 
-class Index extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onDrop = (files) => {
-      const reader = new FileReader();
-      reader.onabort = () => console.log('file reading was aborted');
-      reader.onerror = () => console.log('file reading has failed');
-      reader.onload = () => {
-        const data = reader.result;
-        parser.parseString(data, (err, result) => {
-          if (err) {
-            console.error(err.stack);
-          }
-          this.setState({title:result.testsuites.name || '', testSuite: result.testsuites.testsuite || [], loaded: true})
-          props.dispatch(loadTestSuites(result.testsuites));
-        });
-      }
-      files.forEach(file => reader.readAsBinaryString(file));
+const mapStateToProps = state => ({
+  title: state.name,
+  loaded: !_.isEmpty(state.testSuite),
+  todos: state.todos,
+})
+
+const mapDispatchToProps = dispatch => ({
+  onDrop: ( files ) => {
+    const reader = new FileReader();
+    reader.onabort = () => console.log( 'file reading was aborted' );
+    reader.onerror = () => console.log( 'file reading has failed' );
+    reader.onload = () => {
+      const data = reader.result;
+      parser.parseString( data, ( err, result ) => {
+        if ( err ) {
+          console.error( err.stack );
+        }
+        dispatch( loadTestSuites( result.testsuites ) );
+      } );
     }
-    this.state = {title:'Upload unit test report', testSuite: [], loaded: false}
+    files.forEach( file => reader.readAsBinaryString( file ) );
   }
-  
-  render() {
-    if(!this.state.loaded) {
-      return (
-        <Layout title={this.state.title}>
-          <Dropzone accept={".xml"} multiple={false} onDrop={this.onDrop}>
-            {({getRootProps, getInputProps}) => (
-              <section>
-                <div className='zone' {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <p>Drag 'n' drop file here, or click to select file</p>
-                </div>
-              </section>
-            )}
-          </Dropzone>
-        </Layout>
-      )
-    } else {
-      return (
-        <Layout title={this.state.title}>
-          <TestSuite testSuites={this.state.testSuite}/>
-        </Layout>
-      )
-    }
-  }
-}
+})
 
-export default connect()(Index)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)( Main )
