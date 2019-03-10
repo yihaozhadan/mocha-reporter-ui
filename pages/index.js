@@ -35,12 +35,12 @@ class Index extends React.Component {
     if(!this.state.loaded) {
       return (
         <Layout title={this.state.title}>
-          <Dropzone accept={".xml"} onDrop={this.onDrop}>
+          <Dropzone accept={".xml"} multiple={false} onDrop={this.onDrop}>
             {({getRootProps, getInputProps}) => (
               <section>
                 <div className='zone' {...getRootProps()}>
                   <input {...getInputProps()} />
-                  <p>Drag 'n' drop some files here, or click to select files</p>
+                  <p>Drag 'n' drop file here, or click to select file</p>
                 </div>
               </section>
             )}

@@ -1,4 +1,6 @@
 import React from 'react';
+import Dropzone from 'react-dropzone';
+import xml2js from 'xml2js';
 import {
   Collapse,
   Navbar,
@@ -12,16 +14,33 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
+const parser = new xml2js.Parser({ mergeAttrs: true });
+
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
-
+    this.onDrop = this.onDrop.bind(this);
     this.toggle = this.toggle.bind(this);
     this.setFilter = this.setFilter.bind(this);
     this.state = {
       isOpen: false,
       filter: "All"
     };
+  }
+  onDrop(files) {
+    const reader = new FileReader();
+    reader.onabort = () => console.log('file reading was aborted');
+    reader.onerror = () => console.log('file reading has failed');
+    reader.onload = () => {
+      const data = reader.result;
+        parser.parseString(data, (err, result) => {
+          if (err) {
+            console.error(err.stack);
+          }
+          console.log(result)
+        });
+    };
+    files.forEach(file => reader.readAsBinaryString(file));
   }
   toggle() {
     this.setState({
@@ -61,7 +80,14 @@ export default class Header extends React.Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem active>
-                <NavLink href="#">Upload</NavLink>
+                <Dropzone accept={".xml"} multiple={false} onDrop={this.onDrop}>
+                  {({getRootProps, getInputProps}) => (
+                      <div {...getRootProps()}>
+                        <input {...getInputProps()} />
+                        <NavLink >Upload</NavLink>
+                      </div>
+                  )}
+                </Dropzone>
               </NavItem>
               <NavItem active>
                 <NavLink href="https://github.com/yihaozhadan/mocha-reporter-ui">GitHub</NavLink>
