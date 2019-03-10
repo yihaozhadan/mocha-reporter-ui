@@ -1,0 +1,9 @@
+.zone {
+  padding: 180px 15px; 
+  background: #eee;
+  text-align: center;
+}
+.zone:hover {
+  background-color: #eee;
+  background: rgb(209, 209, 209);
+}
