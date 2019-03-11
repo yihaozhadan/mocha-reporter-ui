@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Main from '../components/Main/Main';
 import { loadTestSuites } from '../actions';
 
-const parser = new xml2js.Parser( { mergeAttrs: true } );
+const parser = new xml2js.Parser({ mergeAttrs: true });
 
 const mapStateToProps = state => ({
   title: state.testSuites.name,
@@ -13,25 +13,28 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onDrop: ( files ) => {
+  onDrop: (files) => {
     const reader = new FileReader();
-    reader.onabort = () => console.log( 'file reading was aborted' );
-    reader.onerror = () => console.log( 'file reading has failed' );
+    reader.onabort = () => console.log('file reading was aborted');
+    reader.onerror = () => console.log('file reading has failed');
     reader.onload = () => {
       const data = reader.result;
-      parser.parseString( data, ( err, result ) => {
-        if ( err ) {
-          console.error( err.stack );
+      parser.parseString(data, (err, result) => {
+        if (err) {
+          console.error(err.stack);
         }
-        console.log(result.testsuites)  
-        dispatch( loadTestSuites( result.testsuites ) );
-      } );
+        if (result) {
+          dispatch(loadTestSuites(result.testsuites));
+        } else {
+          console.warn('No valid data');
+        }
+      });
     }
-    files.forEach( file => reader.readAsBinaryString( file ) );
+    files.forEach(file => reader.readAsBinaryString(file));
   }
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( Main )
+)(Main)

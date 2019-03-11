@@ -22,8 +22,8 @@ export function loadTestSuites(testSuites) {
   return {
     type: LOAD_TEST_SUITES,
     payload: { 
-      name: testSuites.name[0],
-      testSuite: testSuites.testsuite,
+      name: testSuites.name[0] || 'Empty',
+      testSuite: testSuites.testsuite || [],
     },
   };
 }

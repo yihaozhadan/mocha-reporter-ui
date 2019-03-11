@@ -1,5 +1,11 @@
 # Change log
 
+## 0.3.1 
+[2019-Mar-11]
+- Show filter in nav bar properly.
+- Change menu from "Upload" to "New" in nav bar.
+- Handle empty xml file properly.
+
 ## 0.3.0 
 [2019-Mar-10]
 - Add [react-dropzone](https://react-dropzone.js.org/). It is able to upload test report.
