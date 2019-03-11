@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
-import { Layout } from '../components';
-import { VisibleTestCaseList } from '../container';
+import { Layout } from '..';
+import { VisibleTestCaseList } from '../../container';
 import './style.css';
 
 const Main = ( { title, loaded, onDrop } ) => {

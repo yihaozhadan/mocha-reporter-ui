@@ -14,7 +14,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
-import {loadTestSuites} from '../actions/testCaseActions';
+import {loadTestSuites, setVisibilityFilter, VisibilityFilters} from '../actions';
 const parser = new xml2js.Parser({ mergeAttrs: true });
 
 class Header extends React.Component {
@@ -22,10 +22,10 @@ class Header extends React.Component {
     super(props);
     this.onDrop = this.onDrop.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.setFilter = this.setFilter.bind(this);
+    //this.setFilter = this.setFilter.bind(this);
     this.state = {
       isOpen: false,
-      filter: "All"
+      //filter: "All"
     };
   }
   onDrop(files) {
@@ -48,11 +48,11 @@ class Header extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
-  setFilter(filter) {
-    this.setState({
-      filter
-    });
-  }
+  // setFilter(filter) {
+  //   this.setState({
+  //     filter
+  //   });
+  // }
   render() {
     return (
       <div>
@@ -66,16 +66,16 @@ class Header extends React.Component {
                   {this.state.filter}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem onClick={() => this.setFilter("All")}>
+                  <DropdownItem onClick={() => this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_ALL))}>
                     All
                   </DropdownItem>
-                  <DropdownItem onClick={() => this.setFilter("Success")}>
+                  <DropdownItem onClick={() => this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_SUCCESS_ONLY))}>
                     Success
                   </DropdownItem>
-                  <DropdownItem onClick={() => this.setFilter("Failure")}>
+                  <DropdownItem onClick={() => this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_FAILURE_ONLY))}>
                     Failure
                   </DropdownItem>
-                  <DropdownItem onClick={() => this.setFilter("Skipped")}>
+                  <DropdownItem onClick={() => this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_SKIPPED_ONLY))}>
                     Skipped
                   </DropdownItem>
                 </DropdownMenu>

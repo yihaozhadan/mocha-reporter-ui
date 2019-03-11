@@ -1,15 +1,15 @@
 import _ from 'lodash';
 import xml2js from 'xml2js';
 import { connect } from 'react-redux';
-import { Main } from '../components';
-import { loadTestSuites } from '../actions/testCaseActions';
+import Main from '../components/Main/Main';
+import { loadTestSuites } from '../actions';
 
 const parser = new xml2js.Parser( { mergeAttrs: true } );
 
 const mapStateToProps = state => ({
-  title: state.name,
-  loaded: !_.isEmpty(state.testSuite),
-  todos: state.todos,
+  title: state.testSuites.name,
+  loaded: !_.isEmpty(state.testSuites.testSuite),
+  testSuites: state.testSuites.testSuite,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -23,6 +23,7 @@ const mapDispatchToProps = dispatch => ({
         if ( err ) {
           console.error( err.stack );
         }
+        console.log(result.testsuites)  
         dispatch( loadTestSuites( result.testsuites ) );
       } );
     }

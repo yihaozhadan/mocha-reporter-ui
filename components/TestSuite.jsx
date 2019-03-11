@@ -33,6 +33,8 @@ class TestSuite extends React.Component {
 
   render() {
     const testsuites = this.props.testSuites;
+    let i = -1;
+    console.log('testsuites', testsuites)
     return (
       <div>
         <Row>
@@ -56,9 +58,14 @@ class TestSuite extends React.Component {
         <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>{ this.state.expand }</Button>
         <ListGroup>
           {
-            testsuites.map((testSuite, i) => (
-              <TestCase name={testSuite.name} count={testSuite.tests} testCases={testSuite.testcase} isOpen={this.state.collapse} key={i.toString()} />
-            ))
+            testsuites.map((testSuite) => {
+              if(!_.isEmpty(testSuite.testcase)) {
+                i++;
+                  return (
+                  <TestCase name={testSuite.name} count={testSuite.testcase.length} testCases={testSuite.testcase} isOpen={this.state.collapse} key={i.toString()} />
+                )
+              }
+            })
           }
         </ListGroup>
       </div>

@@ -1,14 +1,21 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import TestSuite from '../components/TestSuite';
+import { toggleTestSuite } from '../actions';
 
-const getVisibleTestcases = (testSuites, filter) => {
-  switch (filter) {
-    case 'SHOW_SUCCESS':
-      return testSuites.forEach((testSuite) => testSuite.testcase.filter(t => t.failure == undefined && t.skipped == undefined));
-    case 'SHOW_FAILURE':
-      return testSuites.forEach((testSuite) => testSuite.testcase.filter(t => t.failure != undefined));
-    case 'SHOW_SKIPPED':
-      return testSuites.forEach((testSuite) => testSuite.testcase.filter(t => t.skipped != undefined));
+const getVisibleTestCases = ( testSuites, filter ) => {
+  switch ( filter ) {
+    case 'SHOW_SUCCESS_ONLY':
+      return testSuites.map( ( testSuite ) => ({
+        ...testSuite, testcase: testSuite.testcase.filter( t => !t.failure && !t.skipped)
+      }));
+    case 'SHOW_FAILURE_ONLY':
+      return testSuites.map( ( testSuite ) => ({
+        ...testSuite, testcase: testSuite.testcase.filter( t => t.failure && !t.skipped )
+      }));
+    case 'SHOW_SKIPPED_ONLY':
+      return testSuites.map( ( testSuite ) => ({
+        ...testSuite, testcase: testSuite.testcase.filter( t => t.skipped && !t.failure )
+      }));
     case 'SHOW_ALL':
     default:
       return testSuites;
@@ -17,18 +24,18 @@ const getVisibleTestcases = (testSuites, filter) => {
 
 const mapStateToProps = state => {
   return {
-    testSuites: getVisibleTestcases(state.testSuite, state.visibilityFilter)
+    testSuites: getVisibleTestCases( state.testSuites.testSuite, state.visibilityFilter )
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     onTestSuiteClick: id => {
-      dispatch(toggleTestSuite(id));
+      dispatch( toggleTestSuite( id ) );
     }
   }
 }
 
-const VisibleTestCaseList = connect(mapStateToProps, mapDispatchToProps)(TestSuite);
+const VisibleTestCaseList = connect( mapStateToProps, mapDispatchToProps )( TestSuite );
 
 export default VisibleTestCaseList

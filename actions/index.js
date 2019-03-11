@@ -2,10 +2,9 @@ import { LOAD_TEST_SUITES, SET_VISIBILITY_FILTER, TOGGLE_TESTSUITE } from '../co
 
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
-  HIDE_ALL: 'HIDE_ALL',
-  SHOW_SUCCESS: 'SHOW_SUCCESS',
-  SHOW_FAILURE: 'SHOW_FAILURE',
-  SHOW_SKIPPED: 'SHOW_SKIPPED',
+  SHOW_SUCCESS_ONLY: 'SHOW_SUCCESS_ONLY',
+  SHOW_FAILURE_ONLY: 'SHOW_FAILURE_ONLY',
+  SHOW_SKIPPED_ONLY: 'SHOW_SKIPPED_ONLY',
 };
 
 export function setVisibilityFilter(filter) {
@@ -22,6 +21,9 @@ export function toggleTestSuite(index) {
 export function loadTestSuites(testSuites) {
   return {
     type: LOAD_TEST_SUITES,
-    payload: { name: testSuites.name[0], testSuite: testSuites.testsuite },
+    payload: { 
+      name: testSuites.name[0],
+      testSuite: testSuites.testsuite,
+    },
   };
 }
