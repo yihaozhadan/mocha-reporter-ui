@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import {Container} from 'reactstrap';
 import Header from './Header';
-import ScrollButton from './ScrollButton/ScrollButton';
+import {ScrollButton} from './';
 
 const Layout = props => (
   <div>
