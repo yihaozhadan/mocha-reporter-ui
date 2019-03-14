@@ -9,22 +9,6 @@ class TestSuite extends React.Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = { collapse: false, expand: 'Expand' };
-    let count = 0;
-    this.props.testSuites.forEach((testSuite) => {
-      count += parseInt(testSuite.tests);
-    });
-    this.totalTests = count;
-    count = 0;
-    this.props.testSuites.forEach((testSuite) => {
-      count += parseInt(testSuite.failures);
-    });
-    this.failedTests = count;
-    count = 0;
-    this.props.testSuites.forEach((testSuite) => {
-      count += parseInt(testSuite.skipped);
-    });
-    this.skippedTests = count;
-    this.successTests = this.totalTests - this.failedTests - this.skippedTests;
   }
 
   toggle() {
@@ -34,25 +18,24 @@ class TestSuite extends React.Component {
   render() {
     const testsuites = this.props.testSuites;
     let i = -1;
-    console.log('testsuites', testsuites)
     return (
       <div>
         <Row>
           <Col>
             <b>Total   : </b>
-            { this.totalTests }
+            { this.props.totalTests }
           </Col>
           <Col className="text-success">
             <b>Success : </b>
-            { this.successTests }
+            { this.props.successTests }
           </Col>
           <Col className="text-danger">
             <b>Failure : </b>
-            { this.failedTests }
+            { this.props.failedTests }
           </Col>
           <Col className="text-warning">
             <b>Skipped : </b>
-            { this.skippedTests }
+            { this.props.skippedTests }
           </Col>
         </Row>
         <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>{ this.state.expand }</Button>

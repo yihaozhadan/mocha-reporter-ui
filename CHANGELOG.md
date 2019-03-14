@@ -1,5 +1,9 @@
 # Change log
 
+## 0.3.2 
+[2019-Mar-14]
+- Fix updating unit test count issue.
+
 ## 0.3.1 
 [2019-Mar-11]
 - Show filter in nav bar properly.
