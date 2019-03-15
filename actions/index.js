@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { LOAD_TEST_SUITES, SET_VISIBILITY_FILTER, TOGGLE_TESTSUITE } from '../constants/action-types';
 
 export const VisibilityFilters = {
@@ -22,8 +23,8 @@ export function loadTestSuites(testSuites) {
   return {
     type: LOAD_TEST_SUITES,
     payload: { 
-      name: testSuites.name[0] || 'Empty',
-      testSuite: testSuites.testsuite || [],
+      name: _.get(testSuites, 'name[0]', 'Empty'),
+      testSuite: _.get(testSuites, 'testsuite', [])
     },
   };
 }

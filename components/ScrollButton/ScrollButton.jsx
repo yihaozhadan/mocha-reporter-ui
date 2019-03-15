@@ -31,7 +31,7 @@ export default class ScrollButton extends React.Component {
         onClick={ () => {
           this.scrollToTop();
         } }>
-        <span className='arrow-up fas fa-arrorw-up'></span>
+        <span className='arrow-up fas fa-chevron-up'></span>
       </button>
     </div>
     )

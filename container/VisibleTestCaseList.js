@@ -23,8 +23,29 @@ const getVisibleTestCases = ( testSuites, filter ) => {
 }
 
 const mapStateToProps = state => {
+  let testSuites = getVisibleTestCases(state.testSuites.testSuite, state.visibilityFilter);
+  let count = 0;
+  testSuites.forEach((testSuite) => {
+    count += parseInt(testSuite.tests);
+  });
+  const totalTests = count;
+  count = 0;
+  testSuites.forEach((testSuite) => {
+    count += parseInt(testSuite.failures);
+  });
+  const failedTests = count;
+  count = 0;
+  testSuites.forEach((testSuite) => {
+    count += parseInt(testSuite.skipped);
+  });
+  const skippedTests = count;
+  const successTests = totalTests - failedTests - skippedTests;
   return {
-    testSuites: getVisibleTestCases( state.testSuites.testSuite, state.visibilityFilter )
+    testSuites,
+    totalTests,
+    failedTests,
+    skippedTests,
+    successTests
   }
 }
 

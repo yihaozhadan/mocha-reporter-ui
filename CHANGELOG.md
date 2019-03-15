@@ -1,5 +1,12 @@
 # Change log
 
+## 0.3.2 
+[2019-Mar-14]
+- Fix updating unit test count issue.
+- Change "back to top" icon and make it visible.
+- Fix bug when load invalid xml report.
+- Improve collapse and expand effect.
+
 ## 0.3.1 
 [2019-Mar-11]
 - Show filter in nav bar properly.
