@@ -9,18 +9,22 @@ class TestCase extends React.Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.toggleToolTip = this.toggleToolTip.bind(this);
-    this.state = { isOpen: false, showBadge: true, tooltipOpen: false };
+    this.state = { isOpen: this.props.isOpen, tooltipOpen: false };
   }
 
   toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen,
-      showBadge: !this.state.showBadge,
-    });
+    this.setState({ isOpen: !this.state.isOpen });
   }
 
   toggleToolTip() {
     this.setState({ tooltipOpen: !this.state.tooltipOpen });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if(this.props.isOpen != nextProps.isOpen) {
+      this.setState({ isOpen: nextProps.isOpen });
+    }
+    return true;
   }
 
   render() {
@@ -38,11 +42,11 @@ class TestCase extends React.Component {
             }
           `}</style>
           </span>
-          <Badge pill className={this.state.showBadge ? '' : 'd-none'}>
+          <Badge pill className={!this.state.isOpen ? '' : 'd-none'}>
           {this.props.count}
           </Badge>
         </div>
-        <Collapse isOpen={this.props.isOpen || this.state.isOpen}>
+        <Collapse isOpen={this.state.isOpen}>
           <Table bordered>
             <caption>{testCases[0].classname}</caption>
             <thead>
@@ -55,7 +59,7 @@ class TestCase extends React.Component {
             {
               testCases.map((testCase, index) => {
                 let status = 'table-success';
-                if (testCase.failure != undefined) {
+                if (testCase.failure) {
                   status = 'table-danger';
                   return (
                     <tbody key={index.toString()}>
@@ -69,7 +73,7 @@ class TestCase extends React.Component {
                     </tbody>
                   );
                 }
-                if (testCase.skipped != undefined) {
+                if (testCase.skipped) {
                   status = 'table-warning';
                 }
                 return (
