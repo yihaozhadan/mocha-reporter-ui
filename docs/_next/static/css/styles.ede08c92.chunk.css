@@ -1,0 +1,33 @@
+.scroll {
+  opacity: 0.5;
+  background-color: aqua;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.scroll:hover {
+  opacity: 1;
+}
+
+.arrow-up {
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -9px;
+  margin-left: -4px;
+}
+.zone {
+  padding: 180px 15px; 
+  background: #eee;
+  text-align: center;
+}
+.zone:hover {
+  background-color: #eee;
+  background: rgb(209, 209, 209);
+}
