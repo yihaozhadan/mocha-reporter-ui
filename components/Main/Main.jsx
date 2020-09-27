@@ -21,7 +21,7 @@ const Main = ( { title, loaded, onDrop } ) => {
           <section>
             <div className='zone' { ...getRootProps() }>
               <input { ...getInputProps() } />
-              <p>Drag 'n' drop file here, or click to select file</p>
+              <p>Drag and drop report file here, or click to select file</p>
             </div>
           </section>
         ) }
