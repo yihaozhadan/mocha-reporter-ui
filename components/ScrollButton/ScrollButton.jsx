@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './ScrollButton.module.css';
 
 export default class ScrollButton extends React.Component {
   constructor() {

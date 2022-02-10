@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import { Layout } from '..';
 import { VisibleTestCaseList } from '../../container';
-import './style.css';
+import './Main.module.css';
 
 const Main = ( { title, loaded, onDrop } ) => {
   if ( loaded ) {
