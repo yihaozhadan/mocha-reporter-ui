@@ -1,5 +1,5 @@
-import {applyMiddleware, createStore} from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
+import { applyMiddleware, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
@@ -11,7 +11,7 @@ const testSuitesInitialState = {
   visibilityFilter: VisibilityFilters.SHOW_ALL,
   testSuites: {
     name: 'Unit Test Report',
-    testSuite: [],
+    testSuite: []
   }
 };
 

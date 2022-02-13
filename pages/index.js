@@ -6,13 +6,13 @@ import { loadTestSuites } from '../actions';
 
 const parser = new xml2js.Parser({ mergeAttrs: true });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   title: state.testSuites.name,
   loaded: !_.isEmpty(state.testSuites.testSuite),
-  testSuites: state.testSuites.testSuite,
-})
+  testSuites: state.testSuites.testSuite
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onDrop: (files) => {
     const reader = new FileReader();
     reader.onabort = () => console.log('file reading was aborted');
@@ -29,12 +29,9 @@ const mapDispatchToProps = dispatch => ({
           console.warn('No valid data');
         }
       });
-    }
-    files.forEach(file => reader.readAsBinaryString(file));
+    };
+    files.forEach((file) => reader.readAsBinaryString(file));
   }
-})
+});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Main)
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -16,7 +16,9 @@ app
     const server = express();
     server.get('/test', (req, res) => {
       fs.readFile(filePath, (error, data) => {
-        if (error) { throw error; }
+        if (error) {
+          throw error;
+        }
         parser.parseString(data, (err, result) => {
           if (err) {
             console.error(err.stack);
@@ -30,7 +32,9 @@ app
     server.get('*', (req, res) => handle(req, res));
 
     server.listen(port, (err) => {
-      if (err) { throw err; }
+      if (err) {
+        throw err;
+      }
       console.log(`> Ready on http://localhost:${port}`);
     });
   })

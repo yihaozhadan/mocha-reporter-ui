@@ -1,39 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ScrollButton.module.css';
 
-export default class ScrollButton extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      intervalId: 0
-    };
-  }
-
-  scrollStep() {
+const ScrollButton = ({ scrollStepInPx, delayInMs }) => {
+  const [intervalId, setIntervalId] = useState(0);
+  const scrollStep = () => {
     if (window.pageYOffset === 0) {
-      clearInterval(this.state.intervalId);
+      clearInterval(intervalId);
     }
-    window.scroll(0, window.pageYOffset - this.props.scrollStepInPx);
-  }
+    window.scroll(0, window.pageYOffset - scrollStepInPx);
+  };
 
-  scrollToTop() {
-    let intervalId = setInterval(this.scrollStep.bind(this), this.props.delayInMs);
-    this.setState({intervalId: intervalId});
-  }
+  const scrollToTop = () => {
+    setInterval(scrollStep, delayInMs);
+    setIntervalId(intervalId);
+  };
 
-  render() {
-    return (
+  return (
     <div>
       <button
-        title='Back to top'
-        className='scroll'
-        onClick={ () => {
-          this.scrollToTop();
-        } }>
-        <span className='arrow-up fas fa-chevron-up'></span>
+        title="Back to top"
+        className="scroll"
+        onClick={() => {
+          scrollToTop();
+        }}>
+        <span className="arrow-up fas fa-chevron-up"></span>
       </button>
     </div>
-    )
-  }
-}
+  );
+};
+
+export default ScrollButton;
