@@ -26,7 +26,7 @@ class Header extends React.Component {
     this.setFilter = this.setFilter.bind(this);
     this.state = {
       isOpen: false,
-      filter: "All"
+      filter: 'All'
     };
   }
   onDrop(files) {
@@ -46,7 +46,7 @@ class Header extends React.Component {
         }
       });
     };
-    files.forEach(file => reader.readAsBinaryString(file));
+    files.forEach((file) => reader.readAsBinaryString(file));
   }
   toggle() {
     this.setState({
@@ -71,26 +71,42 @@ class Header extends React.Component {
                   {this.state.filter}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem onClick={() => { this.setFilter('All'); this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_ALL)) }}>
+                  <DropdownItem
+                    onClick={() => {
+                      this.setFilter('All');
+                      this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_ALL));
+                    }}>
                     All
                   </DropdownItem>
-                  <DropdownItem onClick={() => { this.setFilter('Success'); this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_SUCCESS_ONLY)) }}>
+                  <DropdownItem
+                    onClick={() => {
+                      this.setFilter('Success');
+                      this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_SUCCESS_ONLY));
+                    }}>
                     Success
                   </DropdownItem>
-                  <DropdownItem onClick={() => { this.setFilter('Failure'); this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_FAILURE_ONLY)) }}>
+                  <DropdownItem
+                    onClick={() => {
+                      this.setFilter('Failure');
+                      this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_FAILURE_ONLY));
+                    }}>
                     Failure
                   </DropdownItem>
-                  <DropdownItem onClick={() => { this.setFilter('Skipped'); this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_SKIPPED_ONLY)) }}>
+                  <DropdownItem
+                    onClick={() => {
+                      this.setFilter('Skipped');
+                      this.props.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_SKIPPED_ONLY));
+                    }}>
                     Skipped
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem active>
-                <Dropzone accept={".xml"} multiple={false} onDrop={this.onDrop}>
+                <Dropzone accept={'.xml'} multiple={false} onDrop={this.onDrop}>
                   {({ getRootProps, getInputProps }) => (
                     <div {...getRootProps()}>
                       <input {...getInputProps()} />
-                      <NavLink >New</NavLink>
+                      <NavLink>New</NavLink>
                     </div>
                   )}
                 </Dropzone>
@@ -106,4 +122,4 @@ class Header extends React.Component {
   }
 }
 
-export default connect()(Header)
+export default connect()(Header);

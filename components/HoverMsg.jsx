@@ -1,27 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tooltip } from 'reactstrap';
 
-class HoverMsg extends React.Component {
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
-    this.state = { isOpen: false };
-  }
+const HoverMsg = ({ index, name, message }) => {
+  const [isOpen, toggleOpen] = useState(false);
 
-  toggle() {
-    this.setState({ isOpen: !this.state.isOpen });
-  }
-
-  render() {
-    return (
-      <div>
-        <span id={'hover' + this.props.index}>{ this.props.name }</span>
-        <Tooltip style={{ maxWidth: '600px' }} placement="auto" isOpen={this.state.isOpen} target={'hover' + this.props.index} toggle={this.toggle}>
-          { this.props.message }
-        </Tooltip>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <span id={'hover' + index}>{name}</span>
+      <Tooltip
+        style={{ maxWidth: '600px' }}
+        placement="auto"
+        isOpen={isOpen}
+        target={'hover' + index}
+        toggle={toggleOpen(!isOpen)}>
+        {message}
+      </Tooltip>
+    </div>
+  );
+};
 
 export default HoverMsg;
