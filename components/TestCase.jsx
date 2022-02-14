@@ -9,7 +9,7 @@ const TestCase = (props) => {
       <div>
         <cite className="fas fa-vial" />
         <span className="testTitle">
-          {this.props.name}
+          {props.name}
           <style jsx>{`
             .testTitle {
               margin-left: 0.4em;
@@ -17,11 +17,11 @@ const TestCase = (props) => {
             }
           `}</style>
         </span>
-        <Badge pill className={!this.state.isOpen ? '' : 'd-none'}>
-          {this.props.count}
+        <Badge pill className={!isOpen ? '' : 'd-none'}>
+          {props.count}
         </Badge>
       </div>
-      <Collapse isOpen={this.state.isOpen}>
+      <Collapse isOpen={isOpen}>
         <Table bordered>
           <caption>{props.testCases[0].classname}</caption>
           <thead>
