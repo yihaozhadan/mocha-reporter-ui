@@ -1,0 +1,4 @@
+# https://github.com/mochajs/mocha/blob/master/example/config/.mocharc.yml
+color: true
+recursive: true
+reporter: 'mocha-jenkins-reporter'

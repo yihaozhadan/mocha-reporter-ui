@@ -23,6 +23,12 @@ Production mode
 npm run production
 ```
 
+Unit test
+
+```
+JUNIT_REPORT_PATH=./report.xml npm test
+```
+
 ## Deployment
 
 ## Keywords

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import { Badge, Collapse, ListGroupItem, Table } from 'reactstrap';
 import HovertrMsg from './HoverMsg';
 
 const TestCase = (props) => {
   const [isOpen, toggleOpen] = useState(props.isOpen || false);
   return (
-    <ListGroupItem className="justify-content-between" onClick={toggleOpen(!isOpen)}>
+    <ListGroupItem className="justify-content-between" onClick={() => toggleOpen(!isOpen)}>
       <div>
         <cite className="fas fa-vial" />
         <span className="testTitle">
-          {this.props.name}
+          {props.name}
           <style jsx>{`
             .testTitle {
               margin-left: 0.4em;
@@ -17,13 +18,13 @@ const TestCase = (props) => {
             }
           `}</style>
         </span>
-        <Badge pill className={!this.state.isOpen ? '' : 'd-none'}>
-          {this.props.count}
+        <Badge pill className={!isOpen ? '' : 'd-none'}>
+          {props.count}
         </Badge>
       </div>
-      <Collapse isOpen={this.state.isOpen}>
+      <Collapse isOpen={isOpen}>
         <Table bordered>
-          <caption>{props.testCases[0].classname}</caption>
+          <caption>{props?.testCases[0]?.classname}</caption>
           <thead>
             <tr>
               <th scope="col" style={{ width: '7%' }}>
@@ -37,7 +38,8 @@ const TestCase = (props) => {
               </th>
             </tr>
           </thead>
-          {props.testCases.map((testCase, index) => {
+          {
+           _.isArray(props.testCases)? props.testCases.map((testCase, index) => {
             let status = 'table-success';
             if (testCase.failure) {
               status = 'table-danger';
@@ -71,7 +73,8 @@ const TestCase = (props) => {
                 </tr>
               </tbody>
             );
-          })}
+          }): <div>Empty</div>
+        }
         </Table>
       </Collapse>
     </ListGroupItem>
