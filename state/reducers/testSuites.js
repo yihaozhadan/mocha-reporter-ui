@@ -1,17 +1,17 @@
-import { LOAD_TEST_SUITES } from '../constants/action-types';
+import { actionTypes } from '../constants';
 
 export default function reducer(
   state = {
-    name: 'Unit Test Report',
+    title: 'Unit Test Report',
     testSuite: []
   },
   action
 ) {
   switch (action.type) {
-    case LOAD_TEST_SUITES: {
+    case actionTypes.LOAD_TEST_SUITES: {
       return {
         ...state,
-        name: action.payload.name,
+        title: action.payload.title,
         testSuite: action.payload.testSuite
       };
     }

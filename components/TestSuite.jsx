@@ -1,49 +1,42 @@
-import React from 'react';
+import { useState } from 'react';
 import { Button, ListGroup, Row, Col } from 'reactstrap';
+import { useSelector } from 'react-redux';
 import TestCase from './TestCase';
 
-class TestSuite extends React.Component {
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false, expand: 'Expand' };
-  }
-
-  toggle() {
-    this.setState({
-      collapse: !this.state.collapse,
-      expand: this.state.collapse ? 'Expand' : 'Compress'
-    });
-  }
-
-  render() {
-    const testsuites = this.props.testSuites;
-    let i = -1;
-    return (
-      <div>
-        <Row>
-          <Col>
-            <b>Total : </b>
-            {this.props.totalTests}
-          </Col>
-          <Col className="text-success">
-            <b>Success : </b>
-            {this.props.successTests}
-          </Col>
-          <Col className="text-danger">
-            <b>Failure : </b>
-            {this.props.failedTests}
-          </Col>
-          <Col className="text-warning">
-            <b>Skipped : </b>
-            {this.props.skippedTests}
-          </Col>
-        </Row>
-        <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>
-          {this.state.expand}
-        </Button>
-        <ListGroup>
-          {testsuites.map((testSuite) => {
+const TestSuite = () => {
+  const testSuitesState = useSelector((state) => state.testSuites);
+  const [collapse, setCollapse] = useState(false);
+  const testSuites = testSuitesState.testSuite;
+  let i = -1;
+  return (
+    <div>
+      <Row>
+        <Col>
+          <b>Total : </b>
+          {testSuites?.length || 0}
+        </Col>
+        <Col className="text-success">
+          <b>Success : </b>
+          {testSuites?.testcase?.filter((t) => !t.failure && !t.skipped).length || 0}
+        </Col>
+        <Col className="text-danger">
+          <b>Failure : </b>
+          {testSuites?.testcase?.filter((t) => t.failure).length || 0}
+        </Col>
+        <Col className="text-warning">
+          <b>Skipped : </b>
+          {testSuites?.testcase?.filter((t) => t.skipped).length || 0}
+        </Col>
+      </Row>
+      <Button
+        color="primary"
+        onClick={() => setCollapse(!collapse)}
+        style={{ marginBottom: '1rem' }}>
+        {collapse ? 'Expand All' : 'Compress All'}
+      </Button>
+      <ListGroup>
+        {
+          testSuites?.map((testSuite) => {
             if (!_.isEmpty(testSuite.testcase)) {
               i++;
               return (
@@ -51,16 +44,23 @@ class TestSuite extends React.Component {
                   name={testSuite.name}
                   count={testSuite.testcase.length}
                   testCases={testSuite.testcase}
-                  isOpen={this.state.collapse}
+                  isOpen={collapse}
                   key={i.toString()}
                 />
               );
             }
-          })}
-        </ListGroup>
-      </div>
-    );
-  }
-}
+          })
+        }
+        {/* <TestCase
+                name={'Test'}
+                count={2}
+                testCases={testSuites?testSuites[0].testcase: {}}
+                isOpen={collapse}
+                key={i.toString()}
+              /> */}
+      </ListGroup>
+    </div>
+  );
+};
 
 export default TestSuite;

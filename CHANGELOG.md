@@ -1,5 +1,14 @@
 # Change log
 
+## 0.6.0
+[2022-Feb-19]
+
+Refactor project
+
+- Refactor React code from class component to function component.
+- Refactor Redux to use webhooks.
+- Update folder structure.
+- Add Mocha unit test placeholder.
 ## 0.3.2
 
 [2019-Mar-14]
